@@ -6,7 +6,18 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     result: {},
-    count: 0
+    count: 0,
+    title: "SuperTodos",
+    todos: [
+      {
+        title: "lari pagi",
+        done: false
+      },
+      {
+        title: "makan",
+        done: true
+      }
+    ]
   },
   mutations: {
     fetch(state, payload) {
@@ -18,7 +29,9 @@ export default new Vuex.Store({
   },
   getters: {
     result: state => state.result,
-    count: state => state.count
+    count: state => state.count,
+    title: state => state.title,
+    todos: state => state.todos
   },
   actions: {},
   modules: {}
