@@ -35,6 +35,17 @@ export default new Vuex.Store({
         title: state.newTodo,
         done: false
       })
+    },
+    allDone(state){
+      state.todos.forEach((todo) => {
+        todo.done = true
+      })
+    },
+    setTodoDone(state, index){
+      state.todos[index].done = true;
+    },
+    setTodoNotDone(state, index){
+      state.todos[index].done = false;
     }
   },
   getters: {
@@ -51,6 +62,14 @@ export default new Vuex.Store({
     addTodo(context){
       context.commit("addTodo")
       context.commit("setNewTodo", "")
+    },
+    toggleTodoDone(context, index){
+      const todo = context.state.todos[index];
+      if (todo.done){
+        context.commit("setTodoNotDone", index);
+      } else {
+        context.commit("setTodoDone", index);
+      }
     }
   },
   modules: {}

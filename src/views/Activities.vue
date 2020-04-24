@@ -3,13 +3,14 @@
         <h1>Ini aktivitas saya</h1>
         <input class="inputNewTodo" v-model="newTodo" type="text" placeholder="Tulis aktivitas kamu">
         <button @click="addTodo">Add Todo</button>
-        <button>Add Todo Done</button>
+        <button @click="allDone">Add Todo Done</button>
         <h2>{{title}} {{doneTodos}}</h2>
         <ul>
-            <li v-for="todo in todos"
-            :key="todo.title">
-            {{todo.title}}
-            <input type="checkbox">
+            <li v-for="(todo, index) in todos"
+            :key="index">
+            <span :class="{done: todo.done}">{{todo.title}}</span>
+            <input type="checkbox" @click="toggleTodoDone(index)" :checked="todo.done">
+            <!-- <button @click="deleteTodo">Delete</button> -->
             </li>
         </ul>
         <h2>{{greeting}}</h2>
@@ -18,7 +19,7 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from "vuex"
+import {mapGetters, mapActions, mapMutations} from "vuex"
 export default {
     data: () => {
         return {
@@ -38,8 +39,8 @@ export default {
        }
    },
    methods: {
-    //    ...mapMutations(["addTodo"]),
-       ...mapActions(["addTodo"])
+       ...mapMutations(["allDone"]),
+       ...mapActions(["addTodo", "toggleTodoDone"])
    } 
 }
 </script>
@@ -53,5 +54,8 @@ ul {
 }
 button{
     margin-left: 5px;
+}
+.done{
+    text-decoration: line-through;
 }
 </style>
