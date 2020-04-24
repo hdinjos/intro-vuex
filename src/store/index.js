@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     result: {},
     count: 0,
-    title: "SuperTodos",
+    title: "Daftar Todo: ",
     todos: [
       {
         title: "lari pagi",
@@ -15,7 +15,7 @@ export default new Vuex.Store({
       },
       {
         title: "makan",
-        done: true
+        done: false
       }
     ],
     newTodo: ""
@@ -42,7 +42,10 @@ export default new Vuex.Store({
     count: state => state.count,
     title: state => state.title,
     todos: state => state.todos,
-    newTodo: state => state.newTodo
+    doneTodos: state => {
+      let done = state.todos.filter((todo)=> todo.done === false);
+      return done.length;
+    }
   },
   actions: {
     addTodo(context){

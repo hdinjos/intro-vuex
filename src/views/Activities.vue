@@ -1,11 +1,16 @@
 <template>
     <div>
         <h1>Ini aktivitas saya</h1>
-        <input v-model="newTodo" type="text" placeholder="Tulis aktivitas kamu">
-        <button @click="addTodo">Kirim</button>
-        <h2>{{title}}</h2>
+        <input class="inputNewTodo" v-model="newTodo" type="text" placeholder="Tulis aktivitas kamu">
+        <button @click="addTodo">Add Todo</button>
+        <button>Add Todo Done</button>
+        <h2>{{title}} {{doneTodos}}</h2>
         <ul>
-            <li v-for="todo in todos" :key="todo.title">{{todo.title}}</li>
+            <li v-for="todo in todos"
+            :key="todo.title">
+            {{todo.title}}
+            <input type="checkbox">
+            </li>
         </ul>
         <h2>{{greeting}}</h2>
         <input type="text" v-model="greeting">
@@ -21,7 +26,7 @@ export default {
         }
     },
    computed: {
-       ...mapGetters(["title", "todos"]),
+       ...mapGetters(["title", "todos", "doneTodos"]),
        newTodo:{
            get(){
                return this.$store.state.newTodo;
@@ -33,6 +38,7 @@ export default {
        }
    },
    methods: {
+    //    ...mapMutations(["addTodo"]),
        ...mapActions(["addTodo"])
    } 
 }
@@ -41,5 +47,11 @@ export default {
 <style scoped>
 ul {
     display: inline-block;
+}
+.inputNewTodo {
+    margin-left: 5px;
+}
+button{
+    margin-left: 5px;
 }
 </style>
