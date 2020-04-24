@@ -18,3 +18,9 @@ export default {
    } 
 }
 </script>
+
+<style scoped>
+ul {
+    display: inline-block;
+}
+</style>

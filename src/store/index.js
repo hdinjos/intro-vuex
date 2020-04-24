@@ -17,7 +17,8 @@ export default new Vuex.Store({
         title: "makan",
         done: true
       }
-    ]
+    ],
+    newTodo: ""
   },
   mutations: {
     fetch(state, payload) {
@@ -25,6 +26,15 @@ export default new Vuex.Store({
     },
     increment(state, payload) {
       state.count += payload.amount;
+    },
+    setNewTodo(state, value){
+      state.newTodo = value;
+    },
+    addTodo(state){
+      state.todos.push({
+        title: state.newTodo,
+        done: false
+      })
     }
   },
   getters: {
