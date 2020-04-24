@@ -41,8 +41,14 @@ export default new Vuex.Store({
     result: state => state.result,
     count: state => state.count,
     title: state => state.title,
-    todos: state => state.todos
+    todos: state => state.todos,
+    newTodo: state => state.newTodo
   },
-  actions: {},
+  actions: {
+    addTodo(context){
+      context.commit("addTodo")
+      context.commit("setNewTodo", "")
+    }
+  },
   modules: {}
 });
