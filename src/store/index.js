@@ -46,6 +46,9 @@ export default new Vuex.Store({
     },
     setTodoNotDone(state, index){
       state.todos[index].done = false;
+    },
+    deleteTodo(state, index){
+      state.todos.splice(index,1)
     }
   },
   getters: {

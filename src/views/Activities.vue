@@ -10,7 +10,8 @@
             :key="index">
             <span :class="{done: todo.done}">{{todo.title}}</span>
             <input type="checkbox" @click="toggleTodoDone(index)" :checked="todo.done">
-            <!-- <button @click="deleteTodo">Delete</button> -->
+            <button @click="deleteTodo(index)">X</button>
+            <button @click="editTodo(index)">Edit</button>
             </li>
         </ul>
         <h2>{{greeting}}</h2>
@@ -39,6 +40,12 @@ export default {
        }
    },
    methods: {
+       allDone(){
+           this.$store.commit("allDone")
+       },
+       deleteTodo(index){
+           this.$store.commit("deleteTodo", index)
+       },
        ...mapMutations(["allDone"]),
        ...mapActions(["addTodo", "toggleTodoDone"])
    } 
